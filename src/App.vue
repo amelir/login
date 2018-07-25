@@ -1,23 +1,32 @@
 <template>
-  <h1>{{message}}</h1>
+  <card/>
 </template>
 
 <script>
-export default {
-  data: function(){
-    console.log('hello');
-    return {
-      message: 'Hello!'
+  import card from './components/card.vue';
+  export default {
+    data: function(){
+      console.log('hello');
+      return {
+        message: 'Hello!'
+      }
+    },
+    components: {
+      card
     }
   }
-}
 </script>
 
-<style lang="scss" scoped>
-  $red: rgb(194, 53, 53);
+<style>
+  @import url('https://fonts.googleapis.com/css?family=Quicksand:500|Source+Sans+Pro:400,700');
 
-  h1{
-    color: $red;
-    transform: translate(10px);
+  body{
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
   }
 </style>
