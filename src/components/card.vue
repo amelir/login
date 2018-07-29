@@ -1,14 +1,29 @@
 <template>
   <div class="card">
     <div class="brand">amelir</div>
-    <form>
+    <form v-if="!registerForm" key="log">
       <fieldset>
         <input-field name="username" label="Email"/>
         <input-field name="password" type="password" label="Password"/>
         <input type="submit" value="Login" class="green main"/>
         <div class="buttons">
           <div class="btn red" tabindex="0">Reset Password</div>
-          <div class="btn" tabindex="0">Register</div>
+          <input type="button" v-on:click="toggleRegister" value="Register">
+        </div>
+      </fieldset>
+    </form>
+    <form v-else key="reg">
+      <fieldset>
+        <div class="buttons">
+          <input-field name="fname" label="First Name"/>
+          <input-field name="lname" label="Last Name"/>
+        </div>
+        <input-field name="username" label="Email"/>
+        <input-field name="password" label="Password" type="password"/>
+        <input-field name="password1" label="Confirm Password" type="password"/>
+        <div class="buttons inverse">
+          <input type="submit" class="green main" value="Register"/>
+          <input type="button" v-on:click="toggleRegister" value="Already registered?"/>
         </div>
       </fieldset>
     </form>
@@ -18,8 +33,25 @@
 <script>
 import inputField from './inputField.vue';
 export default {
+  data(){
+    return {
+      registerForm: false
+    }
+  },
+  methods: {
+    toggleRegister(){
+      this.registerForm = !this.registerForm;
+    }
+  },
   components: {
     inputField
+  },
+  updated(){
+    // Focus first input after change
+    document.querySelector('input').focus();
+  },
+  mounted(){
+    document.querySelector('input').focus();
   }
 }
 </script>
@@ -56,22 +88,28 @@ export default {
     border: none;
     margin: 0;
     padding: 0;
+
+    & > *{
+      margin-top: 10px;
+    }
   }
 
-  input[type=submit]{
+  :not(.buttons) > input[type=submit]{
     width: 100%;
-    margin-top: 10px;
   }
 
   .buttons{
     display: flex;
     position: relative;
     justify-content: space-between;
-    margin-top: 10px;
-    
-    *{
-      width: calc(50% - 5px);
-      text-align: center;
+
+    &.inverse{
+      flex-direction: row-reverse;
+    }
+
+    .input{
+      width: calc(50% - 7px);
+      margin: 0;
     }
   }
 </style>

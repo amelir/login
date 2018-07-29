@@ -5,12 +5,6 @@
 <script>
   import card from './components/card.vue';
   export default {
-    data: function(){
-      console.log('hello');
-      return {
-        message: 'Hello!'
-      }
-    },
     components: {
       card
     }

@@ -29,14 +29,10 @@ export default {
     position: relative;
     border: 1px solid #bbb;
     height: 2.5em;
-    border-radius: 5px;
+    border-radius: 3px;
     margin-left: auto;
     margin-right: auto;
     transition: box-shadow 0.2s ease-in-out, border-color 0.2s ease-in-out;
-
-    & + &{
-      margin-top: 10px;
-    }
 
     label{
       position: absolute;
