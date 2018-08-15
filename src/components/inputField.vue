@@ -1,13 +1,13 @@
 <template>
   <div v-bind:class="{input: true, focus: active}">
     <label :for="name">{{label}}</label>
-    <input ref="input" v-on:input="focus" v-on:focus="focus" v-on:blur="focus" :id="name" :name="name" :type="type"/> 
+    <input ref="input" v-on:input="focus" v-on:focus="focus" v-on:blur="focus" :id="name" :name="name" :type="type" :required="required"/> 
   </div>
 </template>
 
 <script>
 export default {
-  props: ['name', 'label', 'type'],
+  props: ['name', 'label', 'required', 'type'],
   data(){
     return {
       active: false

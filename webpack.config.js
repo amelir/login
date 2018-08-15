@@ -18,6 +18,16 @@ module.exports = {
 
   devtool: IS_DEV ? 'source-map' : false,
 
+  devServer: {
+    port: process.env.PORT || 3000,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        pathRewrite: {'^/api': ''}
+      }
+    }
+  },
+
   module: {
     rules: [
       {

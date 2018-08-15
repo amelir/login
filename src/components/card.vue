@@ -1,10 +1,10 @@
 <template>
   <div class="card">
     <div class="brand">amelir</div>
-    <form v-if="!registerForm" key="log">
+    <form v-if="!registerForm" v-on:submit.prevent="login" key="login">
       <fieldset>
-        <input-field name="username" label="Email"/>
-        <input-field name="password" type="password" label="Password"/>
+        <input-field name="username" label="Email" required/>
+        <input-field name="password" type="password" label="Password" required/>
         <input type="submit" value="Login" class="green main"/>
         <div class="buttons">
           <div class="btn red" tabindex="0">Reset Password</div>
@@ -12,15 +12,15 @@
         </div>
       </fieldset>
     </form>
-    <form v-else key="reg">
+    <form v-else v-on:submit.prevent="register" key="register">
       <fieldset>
         <div class="buttons">
-          <input-field name="fname" label="First Name"/>
-          <input-field name="lname" label="Last Name"/>
+          <input-field name="fname" label="First Name" required/>
+          <input-field name="lname" label="Last Name" required/>
         </div>
-        <input-field name="username" label="Email"/>
-        <input-field name="password" label="Password" type="password"/>
-        <input-field name="password1" label="Confirm Password" type="password"/>
+        <input-field name="username" label="Email" required/>
+        <input-field name="password" label="Password" type="password" required/>
+        <input-field name="password1" label="Confirm Password" type="password" required/>
         <div class="buttons inverse">
           <input type="submit" class="green main" value="Register"/>
           <input type="button" v-on:click="toggleRegister" value="Already registered?"/>
@@ -31,25 +31,82 @@
 </template>
 
 <script>
+import axios from 'axios';
 import inputField from './inputField.vue';
+
 export default {
   data(){
     return {
       registerForm: false
     }
   },
+
   methods: {
+    login(e){
+      // Serialize data
+      const data = {
+        email: e.target.elements.username.value,
+        password: e.target.elements.password.value
+      }
+
+      // Make API call to login
+      axios.post('/api/auth', data)
+        .catch(err => {
+          alert('Login failed.');
+          console.error(err);
+        })
+        .then(res => {
+          // Cache token
+          localStorage.setItem('authToken', res.data['access_token']);
+          alert('Login successful.');
+        });
+    },
+
+    register(e){
+      // Serialize data
+      const data = {
+        firstName: e.target.elements.fname.value,
+        lastName: e.target.elements.lname.value,
+        email: e.target.elements.username.value,
+        password: e.target.elements.password.value,
+        confirmPassword: e.target.elements.password1.value
+      }
+
+      // Check if passwords match
+      if(data.password !== data.confirmPassword){
+        alert('Passwords do not match.');
+        return;
+      }
+
+      // Make API call
+      axios.post('/api/auth/register', data)
+        .then(res => {
+          // Switch back to login
+          this.registerForm = false;
+
+          alert('Registration complete. Please login to continue.');
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Failed to register.');
+        });
+
+    },
+
     toggleRegister(){
       this.registerForm = !this.registerForm;
     }
   },
+
   components: {
     inputField
   },
+  
   updated(){
     // Focus first input after change
     document.querySelector('input').focus();
   },
+
   mounted(){
     document.querySelector('input').focus();
   }
