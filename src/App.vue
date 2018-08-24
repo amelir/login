@@ -3,8 +3,7 @@
 </template>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css?family=Quicksand:500|Source+Sans+Pro:400,700');
-  @import './settings.scss';
+  @import 'components/global.scss';
 
   body{
     margin: 0;
@@ -13,9 +12,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
-    &, *{
-      font-family: 'Source Sans Pro', sans-serif;
-    }
   }
 </style>

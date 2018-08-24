@@ -823,6 +823,10 @@ component-emitter@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
 
+"components@github:amelir/components":
+  version "0.0.0"
+  resolved "https://codeload.github.com/amelir/components/tar.gz/91b23e48e87e8d2f3afa34d871463a5f82cf9e33"
+
 compressible@~2.0.14:
   version "2.0.14"
   resolved "https://registry.yarnpkg.com/compressible/-/compressible-2.0.14.tgz#326c5f507fbb055f54116782b969a81b67a29da7"
