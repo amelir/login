@@ -23,8 +23,8 @@ export default {
 
 
 <style lang="scss" scoped>
-  @import '../style';
-
+  @import '../settings.scss';
+  
   .input{
     position: relative;
     border: 1px solid #bbb;

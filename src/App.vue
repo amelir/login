@@ -1,18 +1,10 @@
 <template>
-  <card/>
+  <router-view></router-view>
 </template>
 
-<script>
-  import card from './components/card.vue';
-  export default {
-    components: {
-      card
-    }
-  }
-</script>
-
-<style>
+<style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Quicksand:500|Source+Sans+Pro:400,700');
+  @import './settings.scss';
 
   body{
     margin: 0;
@@ -21,6 +13,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: 'Source Sans Pro', sans-serif;
+
+    &, *{
+      font-family: 'Source Sans Pro', sans-serif;
+    }
   }
 </style>

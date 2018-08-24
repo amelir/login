@@ -1,29 +1,14 @@
 <template>
   <div class="card">
     <div class="brand">amelir</div>
-    <form v-if="!registerForm" v-on:submit.prevent="login" key="login">
+    <form v-on:submit.prevent="login">
       <fieldset>
         <input-field name="username" label="Email" required/>
         <input-field name="password" type="password" label="Password" required/>
         <input type="submit" value="Login" class="green main"/>
         <div class="buttons">
           <div class="btn red" tabindex="0">Reset Password</div>
-          <input type="button" v-on:click="toggleRegister" value="Register">
-        </div>
-      </fieldset>
-    </form>
-    <form v-else v-on:submit.prevent="register" key="register">
-      <fieldset>
-        <div class="buttons">
-          <input-field name="fname" label="First Name" required/>
-          <input-field name="lname" label="Last Name" required/>
-        </div>
-        <input-field name="username" label="Email" required/>
-        <input-field name="password" label="Password" type="password" required/>
-        <input-field name="password1" label="Confirm Password" type="password" required/>
-        <div class="buttons inverse">
-          <input type="submit" class="green main" value="Register"/>
-          <input type="button" v-on:click="toggleRegister" value="Already registered?"/>
+          <router-link to="/register" class="btn">Create Account</router-link>
         </div>
       </fieldset>
     </form>
@@ -35,12 +20,6 @@ import axios from 'axios';
 import inputField from './inputField.vue';
 
 export default {
-  data(){
-    return {
-      registerForm: false
-    }
-  },
-
   methods: {
     login(e){
       // Serialize data
@@ -60,41 +39,6 @@ export default {
           localStorage.setItem('authToken', res.data['access_token']);
           alert('Login successful.');
         });
-    },
-
-    register(e){
-      // Serialize data
-      const data = {
-        firstName: e.target.elements.fname.value,
-        lastName: e.target.elements.lname.value,
-        email: e.target.elements.username.value,
-        password: e.target.elements.password.value,
-        confirmPassword: e.target.elements.password1.value
-      }
-
-      // Check if passwords match
-      if(data.password !== data.confirmPassword){
-        alert('Passwords do not match.');
-        return;
-      }
-
-      // Make API call
-      axios.post('/api/auth/register', data)
-        .then(res => {
-          // Switch back to login
-          this.registerForm = false;
-
-          alert('Registration complete. Please login to continue.');
-        })
-        .catch(err => {
-          console.error(err);
-          alert('Failed to register.');
-        });
-
-    },
-
-    toggleRegister(){
-      this.registerForm = !this.registerForm;
     }
   },
 
@@ -113,9 +57,81 @@ export default {
 }
 </script>
 
+<style lang="scss">
+  @import '../settings.scss';
+  
+  input[type=submit], input[type=button], button, .btn{
+    display: inline-block;
+    padding: 0.75em 1em;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    background-color: #fff;
+    color: #aaa;
+    font-size: 14px;
+    font-weight: 700;
+    transition: color 0.1s linear, background-color 0.1s linear;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+    align-items: flex-start;
+    text-align: center;
+    user-select: none;
+    white-space: pre;
+    -webkit-tap-highlight-color: rgba(#000, 0); ;
 
-<style lang="scss" scoped>
-  @import '../style';
+    &.main{
+      border-color: #aaa;
+    }
+
+    &:hover, &:focus, &:active{
+      background-color: #eaeaea;
+      color: #fff;
+
+      &.main{
+        border-color: #eaeaea;
+      }
+    }
+
+    &.green{
+      color: $green;
+
+      &:hover, &:focus, &:active{
+        background-color: $green;
+        color: #fff;
+      }
+
+      &.main{
+        border-color: $green;
+      }
+    }
+
+    &.blue{
+      color: $blue;
+
+      &:hover, &:focus, &:active{
+        background-color: $blue;
+        color: #fff;
+      }
+
+      &.main{
+        border-color: $blue;
+      }
+    }
+
+    &.red{
+      color: $red;
+
+      &:hover, &:focus, &:active{
+        background-color: $red;
+        color: #fff;
+      }
+
+      &.main{
+        border-color: $red;
+      }
+    }
+  }
 
   .card{
     background-color: #fff;
