@@ -9,14 +9,20 @@ import Register from './components/Register.vue';
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', component: Login},
-  { path: '/register', component: Register},
+  { path: '/', component: Login, meta: { title: 'Login' }},
+  { path: '/register', component: Register, meta: { title: 'Register' } },
 ];
 
 const router = new VueRouter({
   routes,
   base: document.querySelector('#root').getAttribute('data-path') || '/',
   mode: 'history'
+});
+
+router.beforeEach((to, from, next) => {
+  console.log(to);
+  document.title = to.meta.title ? `Amelir - ${to.meta.title}` : 'Amelir';
+  next();
 });
 
 new Vue({

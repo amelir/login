@@ -19,6 +19,7 @@ module.exports = {
   devtool: IS_DEV ? 'source-map' : false,
 
   devServer: {
+    historyApiFallback: true,
     port: process.env.PORT || 3000,
     proxy: {
       '/api': {
