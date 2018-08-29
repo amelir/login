@@ -16,11 +16,16 @@ module.exports = {
     publicPath: IS_DEV ? '/' : config.root
   },
 
+  resolve: {
+    extensions: ['.js', '.json', '.vue'],
+    modules: [path.join(__dirname, 'node_modules')]
+  },
+
   devtool: IS_DEV ? 'source-map' : false,
 
   devServer: {
     historyApiFallback: true,
-    port: process.env.PORT || 3000,
+    port: process.env.PORT || 3001,
     proxy: {
       '/api': {
         target: 'http://localhost:8080',
