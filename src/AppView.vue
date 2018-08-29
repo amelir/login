@@ -1,11 +1,11 @@
 <template>
-  <router-view></router-view>
+  <div class="center">
+    <router-view></router-view>
+  </div>
 </template>
 
-<style lang="scss">
-  @import 'components/global.scss';
-
-  body{
+<style lang="scss" scoped>
+  .center{
     margin: 0;
     padding: 0;
     height: 100vh;

@@ -8,7 +8,7 @@
         <input type="submit" value="Login" class="green main"/>
         <div class="buttons">
           <div class="btn red" tabindex="0">Reset Password</div>
-          <router-link to="/register" class="btn">Create Account</router-link>
+          <router-link :to="{name: 'account_register'}" class="btn">Create Account</router-link>
         </div>
       </fieldset>
     </form>
@@ -65,9 +65,10 @@ export default {
     margin: auto;
     padding: 1rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 25em;
     border-radius: 10px;
     box-shadow: 0 4px 90px 4px rgba(#000, 0.18);
+    box-sizing: border-box;
   }
 
   .brand{

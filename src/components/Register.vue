@@ -11,7 +11,7 @@
         <form-input name="password1" label="Confirm Password" type="password" required/>
         <div class="buttons inverse">
           <input type="submit" class="green main" value="Register"/>
-          <router-link to="/" class="btn">Already registered?</router-link>
+          <router-link :to="{name: 'account_login'}" class="btn">Already registered?</router-link>
         </div>
       </fieldset>
     </form>
@@ -76,10 +76,11 @@ export default {
     margin: auto;
     padding: 1rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 25em;
     border-radius: 10px;
     box-shadow: 0 4px 90px 4px rgba(#000, 0.18);
     padding-top: 2em;
+    box-sizing: border-box;
   }
 
   .brand{
