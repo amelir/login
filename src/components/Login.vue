@@ -1,18 +1,15 @@
 <template>
-  <div class="card">
-    <div class="brand">amelir</div>
-    <form v-on:submit.prevent="login">
-      <fieldset>
-        <form-input name="username" label="Email" required/>
-        <form-input name="password" type="password" label="Password" required/>
-        <input type="submit" value="Login" class="green main"/>
-        <div class="buttons">
-          <div class="btn red" tabindex="0">Reset Password</div>
-          <router-link :to="{name: 'account_register'}" class="btn">Create Account</router-link>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+  <form v-on:submit.prevent="login">
+    <fieldset>
+      <form-input name="username" label="Email" required/>
+      <form-input name="password" type="password" label="Password" required/>
+      <input type="submit" value="Login" class="green main"/>
+      <div class="buttons">
+        <div class="btn red" tabindex="0">Reset Password</div>
+        <router-link :to="{name: 'account_register'}" class="btn">Create Account</router-link>
+      </div>
+    </fieldset>
+  </form>
 </template>
 
 <script>
@@ -59,24 +56,6 @@ export default {
 
 <style lang="scss" scoped>
   @import 'components/colors.scss';
-
-  .card{
-    background-color: #fff;
-    margin: auto;
-    padding: 1rem;
-    width: 100%;
-    max-width: 25em;
-    border-radius: 10px;
-    box-shadow: 0 4px 90px 4px rgba(#000, 0.18);
-    box-sizing: border-box;
-  }
-
-  .brand{
-    font-size: 38px;
-    user-select: none;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
 
   fieldset > *{
     margin-top: 10px;

@@ -1,21 +1,19 @@
 <template>
-  <div class="card">
-    <form v-on:submit.prevent="register">
-      <fieldset>
-        <div class="buttons">
-          <form-input name="fname" label="First Name" required/>
-          <form-input name="lname" label="Last Name" required/>
-        </div>
-        <form-input name="username" label="Email" required/>
-        <form-input name="password" label="Password" type="password" required/>
-        <form-input name="password1" label="Confirm Password" type="password" required/>
-        <div class="buttons inverse">
-          <input type="submit" class="green main" value="Register"/>
-          <router-link :to="{name: 'account_login'}" class="btn">Already registered?</router-link>
-        </div>
-      </fieldset>
-    </form>
-  </div>
+  <form v-on:submit.prevent="register">
+    <fieldset>
+      <div class="buttons">
+        <form-input name="fname" label="First Name" required/>
+        <form-input name="lname" label="Last Name" required/>
+      </div>
+      <form-input name="username" label="Email" required/>
+      <form-input name="password" label="Password" type="password" required/>
+      <form-input name="password1" label="Confirm Password" type="password" required/>
+      <div class="buttons inverse">
+        <input type="submit" class="green main" value="Register"/>
+        <router-link :to="{name: 'account_login'}" class="btn">Already registered?</router-link>
+      </div>
+    </fieldset>
+  </form>
 </template>
 
 <script>
@@ -70,25 +68,6 @@ export default {
 
 <style lang="scss" scoped>
   @import 'components/colors.scss';
-
-  .card{
-    background-color: #fff;
-    margin: auto;
-    padding: 1rem;
-    width: 100%;
-    max-width: 25em;
-    border-radius: 10px;
-    box-shadow: 0 4px 90px 4px rgba(#000, 0.18);
-    padding-top: 2em;
-    box-sizing: border-box;
-  }
-
-  .brand{
-    font-size: 38px;
-    user-select: none;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
 
   fieldset > *{
     margin-top: 10px;
