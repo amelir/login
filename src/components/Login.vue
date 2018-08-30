@@ -1,8 +1,8 @@
 <template>
   <form v-on:submit.prevent="login">
     <fieldset>
-      <form-input name="username" label="Email" required/>
-      <form-input name="password" type="password" label="Password" required/>
+      <form-input name="email" label="Email" autocomplete="email" required/>
+      <form-input name="password" type="password" label="Password" autocomplete="current-password" required/>
       <input type="submit" value="Login" class="green main"/>
       <div class="buttons">
         <div class="btn red" tabindex="0">Reset Password</div>
@@ -21,7 +21,7 @@ export default {
     login(e){
       // Serialize data
       const data = {
-        email: e.target.elements.username.value,
+        email: e.target.elements.email.value,
         password: e.target.elements.password.value
       }
 

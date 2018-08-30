@@ -2,12 +2,12 @@
   <form v-on:submit.prevent="register">
     <fieldset>
       <div class="buttons">
-        <form-input name="fname" label="First Name" required/>
-        <form-input name="lname" label="Last Name" required/>
+        <form-input name="fname" label="First Name" autocomplete="given-name" required/>
+        <form-input name="lname" label="Last Name" autocomplete="family-name" required/>
       </div>
-      <form-input name="username" label="Email" required/>
-      <form-input name="password" label="Password" type="password" required/>
-      <form-input name="password1" label="Confirm Password" type="password" required/>
+      <form-input name="username" label="Email" autocomplete="email" required/>
+      <form-input name="password" label="Password" type="password" autocomplete="new-password" required/>
+      <form-input name="password1" label="Confirm Password" type="password" autocomplete="new-password" required/>
       <div class="buttons inverse">
         <input type="submit" class="green main" value="Register"/>
         <router-link :to="{name: 'account_login'}" class="btn">Already registered?</router-link>

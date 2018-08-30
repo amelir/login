@@ -2,7 +2,7 @@
   "name": "login",
   "author": "amelir",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "0.0.1-0",
   "main": "src/index",
   "scripts": {
     "start": "webpack-dev-server --mode development --open --hot",
