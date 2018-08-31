@@ -27,14 +27,19 @@ export default {
 
       // Make API call to login
       axios.post('/api/auth', data)
+        .then(res => {
+          // Parse token
+          const token = JSON.parse(atob(res.data['access_token'].split('.')[1]));
+
+          // Send user info to store
+          this.$store.commit('accountLogin', {email: token.sub});
+
+          // Cache token
+          localStorage.setItem('authToken', res.data['access_token']);
+        })
         .catch(err => {
           alert('Login failed.');
           console.error(err);
-        })
-        .then(res => {
-          // Cache token
-          localStorage.setItem('authToken', res.data['access_token']);
-          alert('Login successful.');
         });
     }
   },
