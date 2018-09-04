@@ -8,7 +8,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import 'components/colors.scss';
+  @import 'components/settings.scss';
 
   .center{
     padding: 0;

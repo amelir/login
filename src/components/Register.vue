@@ -18,7 +18,7 @@
 
 <script>
 import axios from 'axios';
-import FormInput from 'components/FormInput.vue';
+import { FormInput } from 'components';
 
 export default {
   methods: {
@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import 'components/colors.scss';
+  @import 'components/settings.scss';
 
   fieldset > *{
     margin-top: 10px;
